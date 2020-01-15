@@ -3,8 +3,10 @@ package com.qualitype.ArabicToRoman;
 import java.util.List;
 
 /**
+ * This class can be used to convert roman figures to arabic figures and back
+ * Note: Figures below 0 and above 3999 can't be converted from arabic to roman
  *
- * @author niels
+ * @author Niels Wiesner
  *
  */
 public final class ArabicRomanConverter {
@@ -37,12 +39,11 @@ public final class ArabicRomanConverter {
 	}
 
 	public static int romanToArabic(String input) {
+
 		String romanNumeral = input.toUpperCase();
-		int result = 0;
-
-		final List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
-
 		int i = 0;
+		int result = 0;
+		final List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
 
 		while (romanNumeral.length() > 0 && i < romanNumerals.size()) {
 			final RomanNumeral symbol = romanNumerals.get(i);
