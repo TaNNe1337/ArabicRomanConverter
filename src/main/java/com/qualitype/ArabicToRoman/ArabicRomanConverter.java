@@ -15,14 +15,14 @@ public final class ArabicRomanConverter {
 		throw new UnsupportedOperationException();
 	}
 
-	public static String arabicToRoman(int arabicFigure) {
-		int i = 0;
-		final List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
+	final private static List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
 
+	public static String arabicToRoman(int arabicFigure) {
 		if (arabicFigure <= 0 || arabicFigure > 4000) {
 			throw new IllegalArgumentException(arabicFigure + " is not in range (0,4000]");
 		}
 
+		int i = 0;
 		final StringBuilder stringBuilder = new StringBuilder();
 
 		while (arabicFigure > 0 && i < romanNumerals.size()) {
@@ -38,12 +38,11 @@ public final class ArabicRomanConverter {
 		return stringBuilder.toString();
 	}
 
-	public static int romanToArabic(String input) {
+	public static int romanToArabic(String romanFigure) {
 
-		String romanNumeral = input.toUpperCase();
+		String romanNumeral = romanFigure.toUpperCase();
 		int i = 0;
 		int result = 0;
-		final List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
 
 		while (romanNumeral.length() > 0 && i < romanNumerals.size()) {
 			final RomanNumeral symbol = romanNumerals.get(i);
@@ -56,7 +55,7 @@ public final class ArabicRomanConverter {
 		}
 
 		if (romanNumeral.length() > 0) {
-			throw new IllegalArgumentException(input + " cannot be converted to a Roman Numeral");
+			throw new IllegalArgumentException(romanFigure + " cannot be converted to a Roman Numeral");
 		}
 
 		return result;
